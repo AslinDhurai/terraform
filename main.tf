@@ -80,6 +80,8 @@ resource "aws_security_group" "my_sg" {
 resource "aws_instance" "ubuntu_instance" {
   ami           = "ami-075686beab831bb7f"   # Ubuntu Server 22.04 LTS AMI ID for us-west-2 (Oregon)
   instance_type = "t2.micro"
+  subnet_id              = aws_subnet.my_subnet.id
+  vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   tags = {
     Name = "MyUbuntuInstance"
