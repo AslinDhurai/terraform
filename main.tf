@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "my_bucket" {
 }
 
 resource "aws_instance" "ubuntu_instance" {
-  ami           = "ami-0fc5d935ebf8bc3bc"   # Ubuntu Server 22.04 LTS AMI ID for us-west-2 (Oregon)
+  ami           = "ami-053b0d53c279acc90"   # Ubuntu Server 22.04 LTS AMI ID for us-west-2 (Oregon)
   instance_type = "t2.micro"
 
   tags = {
