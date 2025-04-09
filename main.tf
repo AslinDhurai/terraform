@@ -5,6 +5,15 @@ provider "aws" {
 resource "aws_s3_bucket" "my_bucket" {
   bucket = "myawsbucket4016my"  # Bucket name must be globally unique
 }
+resource "aws_subnet" "example" {
+  vpc_id            = "vpc-00b46f253689c3c7d"
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-west-2a"
+
+  tags = {
+    Name = "ExampleSubnet"
+  }
+}
 
 resource "aws_instance" "ubuntu_instance" {
   ami           = "ami-075686beab831bb7f"   # Ubuntu Server 22.04 LTS AMI ID for us-west-2 (Oregon)
