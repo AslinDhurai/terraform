@@ -48,7 +48,7 @@ pipeline {
                       sudo apt install -y git openjdk-17-jdk maven
 
                       # Clone the app repo
-                      git clone -b spring --single-branch ${APP_REPO}
+                      git clone -b spring --single-branch \${APP_REPO}
                       cd mine   # <-- Replace with your real project folder name
 
                       # Build the application
