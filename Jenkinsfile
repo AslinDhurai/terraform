@@ -42,7 +42,7 @@ pipeline {
                 sh """
                     chmod 400 my-ec2-key.pem
 
-                    ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${INSTANCE_IP} << EOF
+                    ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${env.INSTANCE_IP} << EOF
                       # Update packages
                       sudo apt update -y
                       sudo apt install -y git openjdk-17-jdk maven
