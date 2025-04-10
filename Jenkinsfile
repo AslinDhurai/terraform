@@ -20,6 +20,11 @@ pipeline {
                 sh 'terraform plan'
             }
         }
+        stage('Terraform Outputs') {
+            steps {
+                sh 'terraform output'
+            }
+        }
 
         stage('Terraform Apply') {
             steps {
