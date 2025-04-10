@@ -41,26 +41,21 @@ pipeline {
             steps {
                 sh """
                     chmod 400 my-ec2-key.pem
-
-                    ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${env.INSTANCE_IP} << EOF
-                      # Update packages
+        
+                    ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${env.INSTANCE_IP} '
                       sudo apt update -y
                       sudo apt install -y git openjdk-17-jdk maven
-
-                      # Clone the app repo
-                      git clone -b spring --single-branch \${APP_REPO}
-                      cd mine   # <-- Replace with your real project folder name
-
-                      # Build the application
+        
+                      git clone -b spring --single-branch ${APP_REPO}
+                      cd mine  # <-- replace with correct folder name
+        
                       mvn clean package
-
-                      # Run the JAR on port 9090 in background
+        
                       nohup java -jar target/*.jar --server.port=9090 > app.log 2>&1 &
-
-                      # Save process ID (optional but good)
-                      echo $! > app.pid
+                      echo \$! > app.pid
+        
                       exit
-                    EOF
+                    '
                 """
             }
         }
