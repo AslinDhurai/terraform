@@ -40,6 +40,8 @@ pipeline {
         stage('Access EC2 and Deploy App') {
             steps {
                 sh """
+                
+                    cd modules/keypair
                     chmod 400 my-ec2-key.pem
         
                     ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${env.INSTANCE_IP} '
