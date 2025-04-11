@@ -6,6 +6,8 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-access-key')
         AWS_DEFAULT_REGION = 'us-west-2'
         APP_REPO = 'https://github.com/aslindhurai-cs/mine.git'   // Replace with your GitHub repo
+        GITHUB_USERNAME = 'aslindhurai-cs'
+        GITHUB_TOKEN = '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'
     }
 
     stages {
@@ -52,7 +54,11 @@ pipeline {
                         sudo apt update -y
                         sudo apt install -y git openjdk-17-jdk maven
         
-                        git clone -b spring --single-branch ${APP_REPO}
+                        #git clone -b spring --single-branch ${APP_REPO}
+
+                        git clone -b spring --single-branch https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/aslindhurai-cs/mine.git
+
+                        
                         cd mine   # <-- Replace with the actual folder name
         
                         mvn clean package
