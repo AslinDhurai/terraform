@@ -53,7 +53,7 @@ pipeline {
                         sudo apt install -y git openjdk-17-jdk maven
         
                         git clone -b spring --single-branch ${APP_REPO}
-                        cd your-project-folder-name   # <-- Replace with the actual folder name
+                        cd mine   # <-- Replace with the actual folder name
         
                         mvn clean package
         
