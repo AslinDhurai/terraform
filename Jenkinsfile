@@ -45,26 +45,26 @@ pipeline {
         stage('Access EC2 and Deploy App') {
             steps {
                 sh """
-                
                     cd modules/keypair
                     chmod 400 my-ec2-key.pem
         
-                    ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${env.INSTANCE_IP} '
-                      sudo apt update -y
-                      sudo apt install -y git openjdk-17-jdk maven
+                    ssh -o StrictHostKeyChecking=no -i my-ec2-key.pem ubuntu@${env.INSTANCE_IP} << EOF
+                        sudo apt update -y
+                        sudo apt install -y git openjdk-17-jdk maven
         
-                      git clone -b spring --single-branch ${APP_REPO}
-                      cd mine  # <-- replace with correct folder name
+                        git clone -b spring --single-branch ${APP_REPO}
+                        cd your-project-folder-name   # <-- Replace with the actual folder name
         
-                      mvn clean package
+                        mvn clean package
         
-                      nohup java -jar target/*.jar --server.port=9090 > app.log 2>&1 &
-                      echo \$! > app.pid
+                        nohup java -jar target/*.jar --server.port=9090 > app.log 2>&1 &
+                        echo \$! > app.pid
         
-                      exit
-                    '
+                        exit
+                    EOF
                 """
             }
         }
+
     }
 }
