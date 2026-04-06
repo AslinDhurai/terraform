@@ -101,7 +101,7 @@ pipeline {
 
         stage('Access EC2 and Deploy App') {
             steps {
-                sh """
+                sh '''
                     cd modules/keypair
                     chmod 400 my-ec2-key.pem
 
@@ -124,7 +124,7 @@ pipeline {
                         nohup java -jar target/*.jar --server.port=9090 > app.log 2>&1 &
                         echo \$! > app.pid
                     EOF
-                """
+                '''
             }
         }
     }
